@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 usage() {
     echo "Searches into all the files in the directory for a string"
@@ -24,13 +24,16 @@ if [ ! -d $1 ]; then
     exit 1
 fi
 
+rm -f .temp
+
 xcount=0
 ycount=0
 for file in $(find ${filesdir} -type f -print); do
-    ((++xcount))
-    while read -r line; do
-        ((++ycount))
-    done < <(grep "${searchstr}" ${file})
+    xcount=$((xcount+1))
+    grep "${searchstr}" ${file} >> .temp
 done
+ycount=$(wc -l < .temp)
+
+rm -f .temp
 
 echo "The number of files are $xcount and the number of matching lines are $ycount"
