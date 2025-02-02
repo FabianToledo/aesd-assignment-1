@@ -1,0 +1,6 @@
+Using default value AELD_IS_FUN for string to write
+Using default value 10 for number of files to write
+Writing 10 files containing string AELD_IS_FUN to /tmp/aeld-data
+/tmp/aeld-data created
+The number of files are 10 and the number of matching lines are 10
+success
