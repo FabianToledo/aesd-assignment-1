@@ -8,6 +8,8 @@ OBJS := $(C_FILES:.c=.o)
 # Cross compilation option
 CC := $(CROSS_COMPILE)gcc
 
+all: $(PROG_NAME)
+
 $(PROG_NAME): $(OBJS)
 	$(CC) $^ -o $@
 

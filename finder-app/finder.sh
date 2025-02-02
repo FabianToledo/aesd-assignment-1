@@ -24,16 +24,16 @@ if [ ! -d $1 ]; then
     exit 1
 fi
 
-rm -f .temp
+TMPFILE=$(mktemp --tmpdir finder.XXXXXX)
 
 xcount=0
 ycount=0
 for file in $(find ${filesdir} -type f -print); do
     xcount=$((xcount+1))
-    grep "${searchstr}" ${file} >> .temp
+    grep "${searchstr}" ${file} >> ${TMPFILE}
 done
-ycount=$(wc -l < .temp)
+ycount=$(wc -l < ${TMPFILE})
 
-rm -f .temp
+rm ${TMPFILE}
 
 echo "The number of files are $xcount and the number of matching lines are $ycount"
